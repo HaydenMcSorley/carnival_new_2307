@@ -24,3 +24,10 @@ RSpec.describe Ride do
       ride.board_rider(visitor1)
       expect(ride.rider_log).to eq({ visitor1 => 1 })
     end
+
+    it 'does not board a rider who is not eligible' do
+      ride = Ride.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })
+      visitor1 = Visitor.new('Bruce', 20, '$10')
+      ride.board_rider(visitor1)
+      expect(ride.rider_log).to eq({})
+    end
